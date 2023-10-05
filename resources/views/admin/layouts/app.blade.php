@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('admin_assets/js/app.js') }}" defer></script>
     <script src="{{ asset('admin_assets/bootstrap/dist/js/bootstrap.bundle.min.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -20,7 +20,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('admin_assets/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin_assets/css/app.css') }}" rel="stylesheet">
         <!-- Custom styles for this page -->
         <link href="{{ asset('admin_assets/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
     <link href="{{ asset('admin_assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -36,14 +36,18 @@
 
         <!-- Page Wrapper -->
         <div id="wrapper">
-            @include('layouts.includes.sidebar')
             <!-- Content Wrapper -->
             <div id="content-wrapper" class="d-flex flex-column">
                 <!-- Main Content -->
                 <div id="content">
-                    @include('layouts.includes.header')
-                    @yield('content')
-                    @include('layouts.includes.footer')
+                    @include('admin.layouts.includes.header')
+                    <div class="d-flex">
+                            @include('admin.layouts.includes.sidebar')
+                            <div class="py-3">
+                                @yield('content')
+                            </div>
+                    </div>
+                    @include('admin.layouts.includes.footer')
                 </div>
             </div>
         </div>

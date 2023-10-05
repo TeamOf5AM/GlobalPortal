@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,12 +25,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboards.dashboard');
+        return view(RouteServiceProvider::AdminDashboard.'/dashboard');
     }
 
     public function user()
     {
-        return view('users.users');
+        return view(RouteServiceProvider::AdminUser.'/users');
     }
     
     public function login()
@@ -42,7 +42,7 @@ class HomeController extends Controller
         }
         else
         {
-            return view('auth.login');
+        return view('admin.auth.login');
         }
     }
 }

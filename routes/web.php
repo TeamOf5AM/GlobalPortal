@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,12 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'login'])->name('login');
-// Route::get('/', function () {
-//     return view('auth.login');
+Route::get('/', [HomeController::class, 'login']);
+// Route::get('admin/login', function () {
+//     return view('admin.auth.login')->name('admin.login');
 // });
 
 Auth::routes();
 
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home.dashboard');
-Route::get('/users', [App\Http\Controllers\HomeController::class, 'user'])->name('users');
+Route::get('/dashboard', [HomeController::class, 'index'])->name('home.dashboard');
+Route::get('/users', [HomeController::class, 'user'])->name('users');
+
+Route::prefix('setting')->group(function () {
+    Route::get('header', [HomeController::class, 'header'])->name('setting.header');
+    Route::get('footer', [HomeController::class, 'footer'])->name('setting.footer');
+    Route::get('appearance', [HomeController::class, 'appearance'])->name('setting.appearance');
+    Route::get('pages', [HomeController::class, 'pages'])->name('setting.pages');
+});
