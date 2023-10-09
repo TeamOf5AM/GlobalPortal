@@ -24,6 +24,13 @@ Auth::routes();
 Route::get('/dashboard', [HomeController::class, 'index'])->name('home.dashboard');
 Route::get('/users', [HomeController::class, 'user'])->name('users');
 
+Route::resource('categories', CategoryController::class);
+Route::controller(CategoryController::class)->group(function () {
+    Route::get('/categories/edit/{id}', 'edit')->name('categories.edit');
+    Route::get('/categories/destroy/{id}', 'destroy')->name('categories.destroy');
+    Route::post('/categories/featured', 'updateFeatured')->name('categories.featured');
+});
+
 Route::prefix('setting')->group(function () {
     Route::get('header', [HomeController::class, 'header'])->name('setting.header');
     Route::get('footer', [HomeController::class, 'footer'])->name('setting.footer');
